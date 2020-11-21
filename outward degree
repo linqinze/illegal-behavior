@@ -1,0 +1,18 @@
+function test1
+tau=5;
+ddefun=@(t,y,Z)0.0033333333*(10+0.5*t)*(1-y(1))*((10+0.5*t)*y(1)-(10+0.5*(t-5))*Z(1,1))/((10+0.5*t)-(10+0.5*(t-5))*Z(1,1));
+sol=dde23(ddefun,tau,0.01,[0 90]);
+plot(sol.x,sol.y,'b','LineWidth',2);
+xlabel('Red light time(s)','FontSize',12)
+ylabel('Proportion of illegal riders','FontSize',12)
+set(gca,'YLim',[0 1]);
+hold on
+ddefun=@(t,y,Z)0.005*(10+0.5*t)*(1-y(1))*((10+0.5*t)*y(1)-(10+0.5*(t-5))*Z(1,1))/((10+0.5*t)-(10+0.5*(t-5))*Z(1,1));
+sol=dde23(ddefun,tau,0.01,[0 90]);
+plot(sol.x,sol.y,'g','LineWidth',2)
+hold on
+ddefun=@(t,y,Z)0.0066666666*(10+0.5*t)*(1-y(1))*((10+0.5*t)*y(1)-(10+0.5*(t-5))*Z(1,1))/((10+0.5*t)-(10+0.5*(t-5))*Z(1,1));
+sol=dde23(ddefun,tau,0.01,[0 90]);
+plot(sol.x,sol.y,'r','LineWidth',2)
+legend('m=3','m=4.5','m=6')
+hold off
