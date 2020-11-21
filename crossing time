@@ -1,0 +1,18 @@
+function test1
+tau=5;tbu=8;tcu=10;
+ddefun=@(t,y,Z)0.005*(10+0.3*t)*(1-y(1))*((10+0.3*t)*y(1)-(10+0.3*(t-5))*Z(1,1))/((10+0.3*t)-(10+0.3*(t-5))*Z(1,1));
+sol1=dde23(ddefun,tau,0.01,[0 90]);
+plot(sol1.x,sol1.y,'b','LineWidth',2);
+xlabel('Red light time(s)','FontSize',12)
+ylabel('Proportion of illegal riders','FontSize',12)
+set(gca,'YLim',[0 1]);%y轴的数据显示范围
+hold on
+ddffun=@(t,y,Z)0.005*(10+0.3*t)*(1-y(1))*((10+0.3*t)*y(1)-(10+0.3*(t-8))*Z(1,1))/((10+0.3*t)-(10+0.3*(t-8))*Z(1,1));
+sol2=dde23(ddffun,tbu,0.01,[0 90]);
+plot(sol2.x,sol2.y,'g','LineWidth',2)
+hold on
+ddgfun=@(t,y,Z)0.005*(10+0.3*t)*(1-y(1))*((10+0.3*t)*y(1)-(10+0.3*(t-10))*Z(1,1))/((10+0.3*t)-(10+0.3*(t-10))*Z(1,1));
+sol3=dde23(ddgfun,tcu,0.01,[0 90]);
+plot(sol3.x,sol3.y,'r','LineWidth',2)
+legend('a=5','a=8','a=10')
+hold off
