@@ -5,7 +5,7 @@ sol1=dde23(ddefun,tau,0.01,[0 90]);
 plot(sol1.x,sol1.y,'b','LineWidth',2);
 xlabel('Red light time(s)','FontSize',12)
 ylabel('Proportion of illegal riders','FontSize',12)
-set(gca,'YLim',[0 1]);%y轴的数据显示范围
+set(gca,'YLim',[0 1]);
 hold on
 ddffun=@(t,y,Z)0.005*(10+0.3*t)*(1-y(1))*((10+0.3*t)*y(1)-(10+0.3*(t-8))*Z(1,1))/((10+0.3*t)-(10+0.3*(t-8))*Z(1,1));
 sol2=dde23(ddffun,tbu,0.01,[0 90]);
